@@ -15,10 +15,6 @@ DROPLET_NAME=$1
 TOKEN=$(cat .DO_TOKEN)
 CLOUD_CONFIG=$(cat $2)
 
-echo ========BEGIN CLOUD CONFIG=======
-echo $CLOUD_CONFIG
-echo ========END CLOUD CONFIG======
-
 body='{"name":"'$DROPLET_NAME'","region":"nyc3","size":"512mb","private_networking":true,"image":"coreos-stable","user_data":"'$CLOUD_CONFIG'"'
 body=$body', "ssh_keys": [25214,408466]}'
 
