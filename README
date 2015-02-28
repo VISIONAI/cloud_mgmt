@@ -1,3 +1,15 @@
 You must create a personal access token at https://cloud.digitalocean.com/settings/applications
 
 Save the token to a hidden file called ".DO_TOKEN"
+
+
+Note that ssh keys are added for user 'core' rather than 'root' as is typical.
+
+
+Since most return calls from DO are large; if you are going to want to read them, you will probably be using `jq`
+
+##jq recipes
+```bash
+#list the id, given name, and ips associated with all droplets
+./list_all.sh |  jq ' .droplets[] | {name:.name, id:.id, ips: [.networks.v4[].ip_address] }'
+```
