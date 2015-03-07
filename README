@@ -13,3 +13,9 @@ Since most return calls from DO are large; if you are going to want to read them
 #list the id, given name, and ips associated with all droplets
 ./list_all.sh |  jq ' .droplets[] | {name:.name, id:.id, ips: [.networks.v4[].ip_address] }'
 ```
+
+
+##launch a bunch of nodes
+```bash
+ for x in `seq 1 10`; do ./size_launch_coreos_node.sh vmxserver0$x ../coreosservices/templates/vmxserver 4gb; done
+```
