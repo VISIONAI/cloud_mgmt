@@ -14,7 +14,7 @@ usage () {
 
 DROPLET_NAME=$1
 TOKEN=$(cat .DO_TOKEN)
-CLOUD_CONFIG=$(cat $2)
+CLOUD_CONFIG=$(cat $2 | sed -e 's/\"/\\"/g') # escape double quotes
 SIZE=$3
 
 body='{"name":"'$DROPLET_NAME'","region":"nyc3","size":"'$SIZE'","private_networking":true,"image":"coreos-stable","user_data":"'$CLOUD_CONFIG'"'
